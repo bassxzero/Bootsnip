@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2015 by anonymous (http://jsbin.com/pifiteruka/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+  <style id="jsbin-css">
+div.col-sm-2.tooLong > p
+{
+  white-space: nowrap;
+  overflow: hidden;  
+  text-overflow: ellipsis;    
+}
+
+div.col-sm-2.tooLong:hover
+{  
+  width:50%;    
+}
+
+div.col-sm-2.tooLong:hover > p
+{  
+  white-space: normal;
+  overflow:visible;
+  text-overflow: none;   
+  padding: 10px;
+}
+
+
+
+</style>
+</head>
+  <body>
+
+    <form class="form-horizontal">
+      
+  <div class="form-group">
+    
+    <label for="" class="col-sm-2 control-label">Position Number</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>      
+    </div>
+    
+    <label for="" class="col-sm-2 control-label">Position Type</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">Temporary</p>      
+    </div>
+    
+        <label for="" class="col-sm-2 control-label">Skills Test</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">N</p>      
+    </div>
+    
+
+    
+    <label for="" class="col-sm-2 control-label">Waived/Posted</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">Posted</p>      
+    </div>
+    
+    <label for="" class="col-sm-2 control-label">Waiver Name</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">Is simply dummy text of the printing and typesetting industry.</p>      
+    </div>
+    
+        <label for="" class="col-sm-2 control-label">Hiring Manager</label>
+    <div class="col-sm-2">
+      <p class="form-control-static"><a href="mailto:trs@clemson.edu">N</a></p>      
+    </div>
+
+    
+    <label for="" class="col-sm-2 control-label">Start/Submit Date</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">03/26/2015</p>      
+    </div>
+    
+    <label for="" class="col-sm-2 control-label">Incumbent Emplid</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">N/A</p>      
+    </div>
+    
+        <label for="" class="col-sm-2 control-label">Incumbent Name</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">N/A</p>      
+    </div>
+    
+
+    
+    <label for="" class="col-sm-2 control-label">County-State Code</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">Is simply dummy text of the printing and typesetting industry.</p>      
+    </div>
+    
+    <label for="" class="col-sm-2 control-label">Position Type</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">N/A</p>      
+    </div>
+    
+        <label for="" class="col-sm-2 control-label">Supervisor Position</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">000001810</p>      
+    </div>
+    
+ 
+    
+    <label for="" class="col-sm-2 control-label">Supervisor Emplid</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">123456</p>      
+    </div>
+    
+    <label for="" class="col-sm-2 control-label">Supervisor Position</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">00001810</p>      
+    </div>
+    
+        <label for="" class="col-sm-2 control-label">Supervisor Name</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">That one guy</p>      
+    </div>
+  
+      <label for="" class="col-sm-2 control-label">Job Duration</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">01 Months</p>      
+    </div>
+    
+    <label for="" class="col-sm-2 control-label">Paygroup</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">NO</p>      
+    </div>
+    
+        <label for="" class="col-sm-2 control-label">Target Openings</label>
+    <div class="col-sm-2">
+      <p class="form-control-static">1</p>      
+    </div>
+    
+  </div>
+    
+    </form>
+
+
+  <script id="jsbin-javascript">
+$(document).ready(function(){
+  
+  $.each($('p'),function(){
+    
+    var $_this = $(this);
+    
+    if( $_this.text().length > 25 )
+     $_this.closest('div.col-sm-2').addClass('tooLong'); 
+    
+  });
+  
+  
+});
+</script>
+</body>
+</html>

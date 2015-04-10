@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2015 by anonymous (http://jsbin.com/bowonaseke/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+  <style id="jsbin-css">
+/*! ========================================================================
+ * Bootstrap Toggle: bootstrap-toggle.css v2.2.0
+ * http://www.bootstraptoggle.com
+ * ========================================================================
+ * Copyright 2014 Min Hur, The New York Times Company
+ * Licensed under MIT
+ * ======================================================================== */
+
+
+.checkbox label .toggle,
+.checkbox-inline .toggle {
+	margin-left: -20px;
+	margin-right: 5px;
+}
+
+.toggle {
+	position: relative;
+	overflow: hidden;
+}
+.toggle input[type="checkbox"] {
+	display: none;
+}
+.toggle-group {
+	position: absolute;
+	width: 200%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	transition: left 0.35s;
+	-webkit-transition: left 0.35s;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+.toggle.off .toggle-group {
+	left: -100%;
+}
+.toggle-on {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 50%;
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+}
+.toggle-off {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 50%;
+	right: 0;
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+}
+.toggle-handle {
+	position: relative;
+	margin: 0 auto;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	height: 100%;
+	width: 0px;
+	border-width: 0 1px;
+}
+
+.toggle.btn { min-width: 59px; min-height: 34px; }
+.toggle-on.btn { padding-right: 24px; }
+.toggle-off.btn { padding-left: 24px; }
+
+.toggle.btn-lg { min-width: 79px; min-height: 45px; }
+.toggle-on.btn-lg { padding-right: 31px; }
+.toggle-off.btn-lg { padding-left: 31px; }
+.toggle-handle.btn-lg { width: 40px; }
+
+.toggle.btn-sm { min-width: 50px; min-height: 30px;}
+.toggle-on.btn-sm { padding-right: 20px; }
+.toggle-off.btn-sm { padding-left: 20px; }
+
+
+.toggle.btn-xs { min-width: 40px; min-height: 22px;}
+.toggle-on.btn-xs { padding-right: 12px; }
+.toggle-off.btn-xs { padding-left: 12px; }
+
+
+
+
+
+
+/* file btn */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+/* end file btn */
+</style>
+</head>
+  <body>
+
+    <div class="container">
+
+
+      <div class="form-group">
+
+        <div  class="col-sm-3 control-label ">
+          <span id="file-browse" class="file-input btn btn-primary btn-file">
+            Browse&hellip; <input type="file"/>
+          </span>
+          <p class="help-block">Word document &AMP; PDF only</p>
+        </div>
+
+        <div class="col-sm-9">
+          <ul id="file-pool" class="list-group file-pool">
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HTML Templates sections  -->
+    <script type="text/html" id="Template" >
+        <li class="list-group-item">
+            <button type="button" class="close" data-dismiss="li" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+      </button>
+                          <div class="toggle btn btn-xs btn-primary" data-toggle="toggle" >                
+                <div class="toggle-group">
+                  <label class="btn btn-xs btn-primary active toggle-on" data-add-classes="toggle btn  btn-xs btn-primary" >New</label>
+                  <label class="btn btn-xs btn-success toggle-off" data-add-classes="toggle btn btn-xs btn-success off" >Old</label>
+                  <span class="toggle-handle btn btn-xs btn-default"></span>
+                </div>
+              </div>
+            <span class="FileLabel"></span>
+      </li>
+    </script>
+
+    <script type="text/html" id="BrowseTemplate" >
+        <span id="file-browse" class="file-input btn btn-primary btn-file">Browse&hellip; <input type="file"></span>
+    </script>
+    <!-- END HTML Templates sections  -->
+
+
+
+
+
+
+
+
+  <script id="jsbin-javascript">
+
+ 
+
+
+
+
+          var _template = $('#Template').html();
+          //_template.detach();
+
+          var _BrowseTemplate = $('#BrowseTemplate').html();
+          //_BrowseTemplate.detach();
+
+
+          $(document).on('click', 'ul.file-pool > li.list-group-item > button.close', function(event){
+              event.preventDefault();
+
+              $(this).closest('li.list-group-item').remove();
+
+          });
+
+
+          $(document).on('change', '.btn-file :file', function() {
+              var input = $(this),
+                  numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                  label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+              input.trigger('fileselect', [numFiles, label]);
+          });
+
+          $(document).on('fileselect', '.btn-file :file', function(event, numFiles, label) {
+
+              var _clickedFile = $(this).addClass('hidden').attr('name', 'New[]').detach();
+
+              var temp = $(_template);
+              (temp.find('span.FileLabel')).text(label);
+              temp.append(_clickedFile);
+              $('#file-pool').prepend(temp);
+
+              $('#file-browse').replaceWith(_BrowseTemplate);
+          });
+
+// FILE TOGGLE BUTTONS and add name
+
+$(document).on('click', '.toggle-group',function(event){
+  
+  var _this = $(this);
+  var _div = _this.closest('div.toggle');
+  _this.find('label').toggleClass('active');
+  var _activeLabel =_this.find('label.active');
+  
+  console.log(_activeLabel.data('add-classes'));
+  
+  _div.removeClass().addClass(_activeLabel.data('add-classes'));
+  
+   _this.closest('li.list-group-item')
+                  .find('input:file').attr('name',_activeLabel.text() + '[]');
+    
+  
+});
+</script>
+</body>
+</html>

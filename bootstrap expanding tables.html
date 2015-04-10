@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2015 by trs (http://jsbin.com/vupiti/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+  <style id="jsbin-css">
+#auditPane li.list-group-item p.help-block
+{
+  margin: 0;
+}
+
+.table-list table {
+  margin: 0;  
+}
+
+#panel-table {
+  border: 1px solid #DDD;
+  border-radius : 4px;  
+  padding-left: 0px;
+  padding-right: 0px;
+}
+table.Expanding-Rows thead th {
+  text-align:center;
+}
+
+table.Expanding-Rows tbody div.row div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  
+}
+
+
+table.Expanding-Rows tbody div.row.clicked div {
+  height: auto;
+  white-space: normal;
+  overflow:visible;  
+}
+
+ table.Expanding-Rows tbody div.row.clicked div:first-child {  
+  font-weight:bold;
+  text-align:center;  
+}
+
+
+
+
+
+
+</style>
+</head>
+  <body>
+    <br/>
+    <br/>
+
+
+
+
+    <div class="col-sm-offset-1  col-sm-3 table-list " id="panel-table">     
+      <table class="table table-striped table-hover Expanding-Rows ">
+        <thead>
+          <tr>
+            <th>
+              <div class="row">
+                <div class="col-sm-6">Field</div>
+                <div class="col-sm-6">Data</div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Position #</div>
+                <div class="col-sm-6">00003528</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Request Type</div>
+                <div class="col-sm-6">Stuffas kldfjk lasdfjkl asdfjkl</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Waived/Posted</div>
+                <div class="col-sm-6">Posted</div>
+              </div>
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Hiring Manager</div>
+                <div class="col-sm-6"><a href="mailto">Tyler Scott</a></div>
+              </div>
+            </td>        
+          </tr>
+          <tr>
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Skills Test</div>
+                <div class="col-sm-6">N</div>
+              </div>
+            </td>        
+          </tr>
+          <tr>
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Start/Submit Date</div>
+                <div class="col-sm-6">01/07/2015</div>
+              </div>
+            </td>        
+          </tr>
+          <tr>
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Incumbent Emplid</div>
+                <div class="col-sm-6">049762</div>
+              </div>
+            </td>        
+          </tr>
+          <tr>
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Incumbent Name</div>
+                <div class="col-sm-6">Scott, Tyler Roman</div>
+              </div>
+            </td>        
+          </tr>
+          <tr>
+            <td>
+              <div class="row">
+                <div class="col-sm-6">Request Type</div>
+                <div class="col-sm-6">Reill With Changes</div>
+              </div>
+            </td>        
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div id = "auditPane" class = "col-xs-12 col-sm-6 pull-right ">
+      <span>
+        <h4 class = "" style="display:inline-block">Recent activity</h4>
+        <a class="pull-right">asd</a>
+      </span>    
+      <ul class="list-group pre-scrollable">
+        <li class="list-group-item">Form Submitted: by <a href="#">Tyler Scott</a><p class="help-block" >Dec 1, 2014, 02:00 PM</p></li>
+        <li class="list-group-item">First Approval Pending: by <a href="#">Jordan Harmon</a><p class="help-block" >Jan 6, 2015, 11:46 PM</p></li>
+        <li class="list-group-item">First Approval Pending: by <a href="#">Jordan Harmon</a><p class="help-block" >Jan 6, 2015, 11:46 PM</p></li>
+        <li class="list-group-item">First Approval Pending: by <a href="#">Jordan Harmon</a><p class="help-block" >Jan 6, 2015, 11:46 PM</p></li>
+        <li class="list-group-item">First Approval Pending: by <a href="#">Jordan Harmon</a><p class="help-block" >Jan 6, 2015, 11:46 PM</p></li>
+        <li class="list-group-item">Denied: by <a href="#">Fred Robinson</a><p class="help-block" >Jan 7, 2015, 12:21 AM</p></li>
+        <li class="list-group-item">History: by <a href="#">Clean up</a><p class="help-block" >Jan 7, 2015, 12:07 PM</p></li>
+      </ul>
+    </div>
+    
+  <script id="jsbin-javascript">
+$('table.Expanding-Rows tbody div.row').on('click',function(event){
+  
+  $(this).find('div').toggleClass('col-sm-6 col-xs-12');  
+  $(this).toggleClass('clicked');  
+  
+});
+</script>
+</body>
+</html>

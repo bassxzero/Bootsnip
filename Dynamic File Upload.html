@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2015 by anonymous (http://jsbin.com/jayogokeba/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+
+/* file btn */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+/* end file btn */
+</style>
+</head>
+<body>
+  
+  
+            <legend>Attach Position Description(s)</legend>
+
+        <div class="form-group">
+
+          <div  class="col-sm-3 control-label ">
+            <span id="file-browse" class="file-input btn btn-primary btn-file">
+              Browse&hellip; <input type="file"/>
+            </span>
+            <p class="help-block">Word document & PDF only</p>
+          </div>
+
+          <div class="col-sm-9">
+            <ul id="file-pool" class="list-group file-pool">
+
+            </ul>
+          </div>
+        </div>
+  
+      <!-- HTML Templates sections  -->
+    <script type="text/html" id="Template" >
+        <li class="list-group-item">
+            <button type="button" class="close" data-dismiss="li" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="btn-group btn-toggle">
+                <button type="button" class="btn btn-xs btn-default">New</button>
+                <button type="button" class="btn btn-xs btn-success active">Old</button>
+            </div>
+            <span class="FileLabel">Sample attachment</span>
+        </li>
+    </script>
+
+    <script type="text/html" id="BrowseTemplate" >
+        <span id="file-browse" class="file-input btn btn-primary btn-file">Browse&hellip; <input type="file"></span>
+    </script>
+    <!-- END HTML Templates sections  -->
+
+<script id="jsbin-javascript">
+      // FILE UPLOAD RELATED
+
+      $(document).ready(function(){
+
+          var _template = $('#Template').html();
+          //_template.detach();
+
+          var _BrowseTemplate = $('#BrowseTemplate').html();
+          //_BrowseTemplate.detach();
+
+
+          $(document).on('click', 'ul.file-pool > li.list-group-item > button.close', function(event){
+              event.preventDefault();
+
+              $(this).closest('li.list-group-item').remove();
+
+          });
+
+
+          $(document).on('change', '.btn-file :file', function() {
+              var input = $(this),
+                  numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                  label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+              input.trigger('fileselect', [numFiles, label]);
+          });
+
+          $(document).on('fileselect', '.btn-file :file', function(event, numFiles, label) {
+
+              var _clickedFile = $(this).addClass('hidden').attr('name', 'old[]').detach();
+
+              var temp = $(_template);
+              (temp.find('span.FileLabel')).text(label);
+              temp.append(_clickedFile);
+              $('#file-pool').prepend(temp);
+
+              $('#file-browse').replaceWith(_BrowseTemplate);
+          });
+
+
+          // FILE TOGGLE BUTTONS
+          $(document).on('click', '.btn-toggle', function() {
+              $(this).find('.btn').toggleClass('active');
+
+              if ($(this).find('.btn-success').size()>0) {
+                  $(this).find('.btn').toggleClass('btn-success');
+              }
+
+              $(this).find('.btn').toggleClass('btn-default');
+
+              $(this).closest('li.list-group-item')
+                  .find('input:file').attr('name',$(this).find('.btn.active').text() + '[]');
+
+
+          });
+}); // end doc ready
+</script>
+</body>
+</html>
